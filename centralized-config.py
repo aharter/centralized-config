@@ -37,6 +37,12 @@ def _setup_symlink(src, dst):
     try:
         if os.path.exists(dst):
             os.remove(dst)
+        dst_dir = os.path.dirname(dst)
+        if os.path.exists(dst_dir) and not os.path.isdir(dst_dir):
+            print('%s exists, but is not a dir. Cannot setup link %s => %s' %
+                  (dst_dir, src, dst))
+            return
+        os.makedirs(dst_dir, exist_ok=True)
         os.symlink(src, dst)
     except PermissionError as e:
         print(e)
