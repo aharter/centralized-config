@@ -33,17 +33,17 @@ def _generate_symlinks_config(config_name):
     return symlinks
 
 
-def _setup_symlink(src, dst):
+def _setup_symlink(src, dst, remove=os.remove, makedirs=os.makedirs, symlink=os.symlink):
     try:
         if os.path.exists(dst):
-            os.remove(dst)
+            remove(dst)
         dst_dir = os.path.dirname(dst)
         if os.path.exists(dst_dir) and not os.path.isdir(dst_dir):
             print('%s exists, but is not a dir. Cannot setup link %s => %s' %
                   (dst_dir, src, dst))
             return
-        os.makedirs(dst_dir, exist_ok=True)
-        os.symlink(src, dst)
+        makedirs(dst_dir, exist_ok=True)
+        symlink(src, dst)
     except PermissionError as e:
         print(e)
 
@@ -54,9 +54,19 @@ def _setup_symlinks(symlinks):
 
 
 def _dry_run(symlinks):
-    print('Create symlinks:')
+    def dry_remove(path):
+        print('Remove %s' % path)
+
+    def dry_makedirs(path, **kwargs):
+        print('Makedirs: %s' % path)
+
+    def dry_symlink(src, dst):
+        print('Symlink %s => %s' % (src, dst))
+
     for symlink in symlinks:
-        print('%s => %s' % symlink)
+        _setup_symlink(symlink[0], symlink[1],
+                       dry_remove, dry_makedirs, dry_symlink)
+        print()
 
 
 parser = argparse.ArgumentParser()
