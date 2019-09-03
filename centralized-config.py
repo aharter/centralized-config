@@ -33,12 +33,18 @@ def _generate_symlinks_config(config_name):
     return symlinks
 
 
+def _setup_symlink(src, dst):
+    try:
+        if os.path.exists(dst):
+            os.remove(dst)
+        os.symlink(src, dst)
+    except PermissionError as e:
+        print(e)
+
+
 def _setup_symlinks(symlinks):
     for symlink in symlinks:
-        try:
-            os.symlink(symlink[0], symlink[1])
-        except PermissionError as e:
-            print(e)
+        _setup_symlink(symlink[0], symlink[1])
 
 
 def _dry_run(symlinks):
