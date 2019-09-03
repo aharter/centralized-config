@@ -74,8 +74,7 @@ parser.add_argument('-lc', '--list-configs', dest='list_configs', action='store_
                     help='List all available configurations.')
 parser.add_argument('-d', '--dry-run', dest='dry_run', action='store_true',
                     help='Dry run. Only display symlinks that will be created')
-parser.add_argument('configs', nargs='*',
-                    choices=_get_config(), help='Configurations to use.')
+parser.add_argument('configs', nargs='*', help='Configurations to use.')
 
 args = parser.parse_args()
 
@@ -88,6 +87,11 @@ if args.list_configs:
 if len(args.configs) == 0:
     parser.print_usage()
     exit(1)
+
+for c in args.configs:
+    if c not in _get_config():
+        print('"%s" is not a valid config' % c)
+        exit(1)
 
 symlinks = []
 
