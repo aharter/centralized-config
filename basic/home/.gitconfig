@@ -1,0 +1,21 @@
+[color]
+    ui = auto
+[core]
+    excludesfile = ~/.gitignore
+    editor = nano
+[pretty]
+    graph = %Cred%h%Creset | %C(yellow)%ad%Creset | %s %Cgreen(%cr) %C(bold blue)[%an]%Creset
+[alias]
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    lg = log --graph --pretty=graph --date=short
+    lgbranch = log @{u}...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    lgmaster = log origin/master...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    lgmasterl = log master...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    lgdevelop = log origin/develop...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    lgdevelopl = log develop...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    ld = diff HEAD~1..HEAD
+    dc = diff --cached
+    ad = add -p
+    f = fetch -p
+[help]
+	autocorrect = 1
