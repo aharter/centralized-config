@@ -229,7 +229,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown, (Shift+t)oggle
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown, (Shift+t)oggle, (w)orkspace, (Shift+w)orkspace
 mode "$mode_system" {
     bindsym l exec --no-startup-id xautolock -locknow, mode "default"
     bindsym s exec --no-startup-id i3exit suspend, mode "default"
@@ -237,10 +237,47 @@ mode "$mode_system" {
     bindsym e exec --no-startup-id i3exit logout, mode "default"
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym w mode "workspacesave"
+    bindsym Shift+w mode "workspacerestore"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
     bindsym Shift+t exec --no-startup-id xautolock -toggle, mode "default"
 
     # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $i3_resurrect i3-resurrect
+mode "workspacesave" {
+    bindsym 1 exec $i3_resurrect save -w 1, mode "default"
+    bindsym 2 exec $i3_resurrect save -w 2, mode "default"
+    bindsym 3 exec $i3_resurrect save -w 3, mode "default"
+    bindsym 4 exec $i3_resurrect save -w 4, mode "default"
+    bindsym 5 exec $i3_resurrect save -w 5, mode "default"
+    bindsym 6 exec $i3_resurrect save -w 6, mode "default"
+    bindsym 7 exec $i3_resurrect save -w 7, mode "default"
+    bindsym 8 exec $i3_resurrect save -w 8, mode "default"
+    bindsym 9 exec $i3_resurrect save -w 9, mode "default"
+    bindsym 0 exec $i3_resurrect save -w 0, mode "default"
+
+    # Back to normal: Enter, Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "workspacerestore" {
+    bindsym 1 exec $i3_resurrect restore -w 1, mode "default"
+    bindsym 2 exec $i3_resurrect restore -w 2, mode "default"
+    bindsym 3 exec $i3_resurrect restore -w 3, mode "default"
+    bindsym 4 exec $i3_resurrect restore -w 4, mode "default"
+    bindsym 5 exec $i3_resurrect restore -w 5, mode "default"
+    bindsym 6 exec $i3_resurrect restore -w 6, mode "default"
+    bindsym 7 exec $i3_resurrect restore -w 7, mode "default"
+    bindsym 8 exec $i3_resurrect restore -w 8, mode "default"
+    bindsym 9 exec $i3_resurrect restore -w 9, mode "default"
+    bindsym 0 exec $i3_resurrect restore -w 0, mode "default"
+
+    # Back to normal: Enter, Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
