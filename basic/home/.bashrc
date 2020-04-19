@@ -119,6 +119,13 @@ unset use_color safe_term match_lhs sh
 # Enable nvm
 source /usr/share/nvm/init-nvm.sh
 
+# Use ssh-agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+    eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")" > /dev/null
+fi
 
 # Extend existing commands
 alias cp="cp -i"                          # confirm before overwriting something
