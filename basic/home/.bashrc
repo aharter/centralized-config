@@ -145,8 +145,10 @@ alias comp='nano $HOME/.config/compton.conf'
 alias gren='grep -rn --exclude-dir=.git --exclude-dir=node_modules'
 alias grmo='find . -iname "*.orig" | xargs rm'
 alias gprune="git branch -vv | gawk '{print \$1,\$4}' | grep 'gone]' | gawk '{print \$1}' | xargs git branch -d"
+alias dprune='docker rmi -f $(docker images --filter "dangling=true" -q --no-trunc)'
 alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias lh='la -h'
 alias np='nano -w PKGBUILD'
 
 xhost +local:root > /dev/null 2>&1
