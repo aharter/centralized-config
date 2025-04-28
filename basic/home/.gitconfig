@@ -1,3 +1,6 @@
+[user]
+    name = Andreas Harter
+    email = andreas.harter@jobrad.org
 [color]
     ui = auto
 [core]
@@ -9,8 +12,16 @@
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     lg = log --graph --pretty=graph --date=short
     lgbranch = log @{u}...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    lgrelease = log origin/release/6.15...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    lg14 = log origin/14.0...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    lgreact = log origin/poexte-develop...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    lghot = log origin/hotfix/6.10.1...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    lgstaging = log origin/staging...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative    
+    lgstagingapi = log origin/stagingapi...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative    
     lgmaster = log origin/master...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
     lgmasterl = log master...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    lgmain = log origin/main...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
+    lgmainl = log main...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
     lgdevelop = log origin/develop...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
     lgdevelopl = log develop...HEAD --graph --decorate --left-right --boundary --pretty=format:'%Cred%h%Creset %d %s %Cgreen(%cr)%Creset %Cblue[%an]%Creset' --abbrev-commit --date=relative
     ldd = "!git diff $1~1..$1 ${@:2} #"
@@ -21,3 +32,10 @@
     rb = rebase --autostash -i
 [help]
 	autocorrect = 1
+[merge]
+    tool = meld
+
+[maintenance]
+	repo = /home/anha/dev/odoo
+[init]
+	defaultBranch = main
